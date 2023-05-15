@@ -1,0 +1,4 @@
+/.vscode
+/.env
+/build/Dockerfile.updated
+/vulnerabilities.html

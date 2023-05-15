@@ -1,0 +1,42 @@
+default_context:
+  chart_name: "umm-database"
+  chart_namespace: "umm"
+  chart_version: "0.1.8"
+  need_dep_chart: "no"
+  include_deployment: "no"
+  include_statefulset: "yes"
+  statefulset_image_repo: "registry.apps.eo4eu.eu/eo4eu/eo4eu-umm/user-management-module/umm-database"
+  statefulset_image_tag: "0655d61404655b5986432d9fc64f337e903b3965"
+  statefulset_image_pull_policy: "Always"
+  statefulset_image_secret: "umm-database-registry"
+  statefulset_http_port: "5432"
+  statefulset_http_host_port: "5432"
+  statefulset_app: "umm-portal-db"
+  statefulset_replicas: "1"
+  statefulset_service_name: "umm-portal-db-svc"
+  statefulset_environment_label: "production"
+  statefulset_service_label: "CFS"
+  statefulset_component_label: "umm-database"
+  include_ingress: "no"
+  include_configmap: "no"
+  include_role: "no"
+  include_role_binding: "no"
+  include_service_account: "no"
+  include_service: "yes"
+  service_http_port: "5432"
+  include_persistent_volume_claim: "yes"
+  pvc_persistent_volume_name: "pvc-d33a7220-5a6d-4f1d-ab69-6b09ae53c6f5"
+  pvc_storage_class_name: "csi-cinder-sc-delete"
+  pvc_storage: "3Gi"
+  include_external_vault_secret: "no"
+  include_external_registry_secret: "yes"
+  external_registry_secret_name: "umm-database-registry"
+  k8s_registry_secret_name: "umm-database-registry"
+  external_registry_secret_data:
+    "data": [
+      {
+        secret_key: "dockerconfigjson",
+        vault_secret_key: "eo4eu-cicd/registry_pull_secret/eo4eu-umm/umm-database",
+        vault_secret_property: ".dockerconfigjson"
+      }
+    ]
